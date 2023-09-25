@@ -37,22 +37,34 @@ ensure the merge result can fit in nums1.
 
 class Solution {
     func merge(_ nums1: inout [Int], _ m: Int, _ nums2: [Int], _ n: Int) {
-        var result: [Int] = []
-        for index in 0..<m {
-            result.append(nums1[index])
+        var index1 = m - 1
+        var index2 = n - 1
+        var currentIndex = nums1.count - 1
+        
+        while index1 >= 0 && index2 >= 0 {
+            if nums1[index1] > nums2[index2] {
+                nums1[currentIndex] = nums1[index1]
+                index1 -= 1
+            } else {
+                nums1[currentIndex] = nums2[index2]
+                index2 -= 1
+            }
+            currentIndex -= 1
         }
-        for index in 0..<n {
-            result.append(nums2[index])
+        
+        while index2 >= 0 {
+            nums1[currentIndex] = nums2[index2]
+            index2 -= 1
+            currentIndex -= 1
         }
-        nums1 = result.sorted()
     }
 }
 
 let solution = Solution()
-var numbers1 = [1, 2, 3, 0, 0, 0]
-let numbers2: [Int] = [2, 5, 6]
-let m = 3
-let n = 3
+var numbers1 = [0]
+let numbers2 = [2]
+let m = 0
+let n = 1
 
 solution.merge(&numbers1, m, numbers2, n)
 print(numbers1)
