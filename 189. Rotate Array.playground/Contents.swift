@@ -9,10 +9,10 @@ func rotate(_ nums: inout [Int], _ k: Int) {
             nums[index] = tempTwo
             if index == nums.count - 2 {
                 nums[index + 1] = tempOne
+                break
             }
             tempTwo = tempOne
             tempOne = nums[index + 1]
-
         }
     }
 }
