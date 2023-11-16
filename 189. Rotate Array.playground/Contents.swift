@@ -1,20 +1,7 @@
 func rotate(_ nums: inout [Int], _ k: Int) {
-    guard k > 0 else { return }
-    
-    for _ in 0..<k {
-        var tempOne = nums[0]
-        var tempTwo = nums[nums.count - 1]
-        
-        for index in 0..<nums.count - 1 {
-            nums[index] = tempTwo
-            if index == nums.count - 2 {
-                nums[index + 1] = tempOne
-                break
-            }
-            tempTwo = tempOne
-            tempOne = nums[index + 1]
-        }
-    }
+	for _ in 0..<k {
+		nums.insert(nums.removeLast(), at: 0)
+	}
 }
 
 var nums = [1, 2, 3, 4, 5, 6, 7]
